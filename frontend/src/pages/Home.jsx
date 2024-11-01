@@ -15,6 +15,7 @@ import About from '../components/About/About';
 import ServiceList from '../components/Services/ServiceList';
 import DoctorsList from '../components/Doctors/DoctorsList';
 import FaqList from '../components/Faq/FaqList';
+import Testimonial from '../components/Testimonial/Testimonial';
 
 const Home = () => {
   return (
@@ -302,7 +303,7 @@ const Home = () => {
         </p>
       </div>
 
-      
+      <Testimonial />
     </div>
   </section>
   {/*==== testimonial end ==== */}
