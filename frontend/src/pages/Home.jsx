@@ -39,7 +39,7 @@ const Home = () => {
             </p>
 
             <button className='btn'>
-                Rrquest an Appointment 
+                Request an Appointment 
             </button>
           </div>
 

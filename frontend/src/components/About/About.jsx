@@ -11,7 +11,7 @@ const About = () => {
             {/* ==== about img ==== */}
             <div className='relative w-3/4 lg:w-[770px] z-10 order-2 lg:order-1'>
                 <img src={aboutImg} alt="" />
-                <div className=' absolute z-20 bottom-4 w-[200px] md:w-[300px] right-[-30%] md:right-[-7%] lg:right-[-22%]'>
+                <div className=' absolute z-20 bottom-4 w-[200px] md:w-[300px] right-[30px] md:right-[50px] lg:right-[220px]'>
                     <img src={aboutCarding} alt="" />
                 </div>
             </div>
