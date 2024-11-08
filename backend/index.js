@@ -45,6 +45,6 @@ app.use('/api/v1/reviews', reviewRoute)
 
 app.listen(port, ()=> {
     connectDB();
-    console.log('Server is running on port' + port);
+    console.log('Server is running on port ' + port);
 })
 
