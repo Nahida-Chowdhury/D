@@ -27,25 +27,25 @@ const Header = () => {
 
   const headerRef = useRef(null)
   const menuRef = useRef(null)
-  const {user, role, token} = useContext(authContext)
+  const { user, role, token } = useContext(authContext)
 
- const handleStickyHeader = () => {
-  window.addEventListener('scroll', ()=>{
-    if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
-      headerRef.current.classList.add('sticky__header')
-    }else {
-      headerRef.current.classList.remove('sticky__header')
-    }
+  const handleStickyHeader = () => {
+    window.addEventListener('scroll', () => {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        headerRef.current.classList.add('sticky__header')
+      } else {
+        headerRef.current.classList.remove('sticky__header')
+      }
+    })
+  }
+
+  useEffect(() => {
+    handleStickyHeader()
+
+    return () => window.removeEventListener('scroll', handleStickyHeader)
   })
- }
 
- useEffect(() => {
-  handleStickyHeader()
-
-  return ()=> window.removeEventListener('scroll', handleStickyHeader)
- })
-
- const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
+  const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
 
   return (
     <header className='header flex items-center' ref={headerRef}>
@@ -62,11 +62,11 @@ const Header = () => {
               {
                 navLinks.map((link, index) => (
                   <li key={index}>
-                    <NavLink 
-                      to={link.path} 
-                      className={navClass => 
-                        navClass.isActive 
-                          ? 'text-primaryColor text-[16px] leading-7 font-[600]' 
+                    <NavLink
+                      to={link.path}
+                      className={navClass =>
+                        navClass.isActive
+                          ? 'text-primaryColor text-[16px] leading-7 font-[600]'
                           : 'text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor'
                       }
                     >
@@ -83,31 +83,34 @@ const Header = () => {
 
             {
               token && user ? (
-              <div>
-                <Link 
-                  to={`${
-                    role === 'doctor'
-                    ? '/doctors/profile/me'
-                    : '/users/profile/me'
-                  }`}
-                >
-                  <figure className='w-[35px] h-[35px] rounded-full cursor-pointer'>
-                    <img src={user?.photo} className='w-full rounded-full' alt="" />
-                  </figure>
+                <div>
+                  <Link
+                    to={`${role === 'doctor'
+                        ? '/doctors/profile/me'
+                        : '/users/profile/me'
+                      }`}
+                    className="flex items-center gap-3"
+                  >
+                    <figure className='w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden'>
+                      <img src={user?.photo} className='w-full h-full object-cover' alt={user?.name} />
+                    </figure>
+                    <span className='hidden md:inline-block text-textColor font-medium text-[16px] leading-[20px]'>
+                      {user?.name}
+                    </span>
+                  </Link>
 
-                </Link>
-              </div> 
-              ):(
+                </div>
+              ) : (
                 <Link to='/login'>
                   <button className=' bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
                     Login
                   </button>
                 </Link>
-                )}
+              )}
 
-              <span className='md:hidden' onClick={toggleMenu}>
-                <BiMenu className='w-6 h-6 cursor-pointer' />
-              </span>
+            <span className='md:hidden' onClick={toggleMenu}>
+              <BiMenu className='w-6 h-6 cursor-pointer' />
+            </span>
 
           </div>
 
