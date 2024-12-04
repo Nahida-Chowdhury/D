@@ -3,7 +3,7 @@ import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
 
 export const authenticete = async (req, res, next) => {
-    //get tokenfrom headers
+    //get token from headers
     const authToken = req.headers.authorization;
 
     //check token is exists
